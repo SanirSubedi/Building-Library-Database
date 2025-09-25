@@ -1,162 +1,47 @@
-# Library Management 
+# 📚 Library Management System – Entities & Relationships
 
+## 1. Entities and Attributes
 
-
-
-#  Library Management System – Entity Attributes 
-
----
-
-## Authors
-| Attribute     | Type    | Notes          |
-|---------------|---------|----------------|
-| **author_id** | PK      | Primary Key    |
-| full_name     | Simple  |                |
-| birth_year    | Simple  |                |
-| country       | Simple  |                |
-
----
-
-## Books
-| Attribute        | Type            | Notes                          |
-|------------------|-----------------|--------------------------------|
-| **book_id**      | PK              | Primary Key                    |
-| isbn             | Simple, Unique  | Each book has unique ISBN       |
-| title            | Simple          |                                |
-| publication_year | Simple          |                                |
-| language         | Simple          |                                |
-| edition          | Simple          |                                |
+| Entity           | Attributes                                                                 |
+|------------------|----------------------------------------------------------------------------|
+| **Library**      | Lib_Name, Lib_Number, Lib_Location                                         |
+| **Books**        | Book_id (PK), Title, Language, Publish_year                                |
+| **Author**       | Author_id (PK), F_name, Birth_date, Sex                                    |
+| **Employee**     | Emp_Id (PK), Name, Email, BOD, Sec                                         |
+| **Member**       | M_Id (PK), F_name, L_name, Email                                           |
+| **Loan**         | Loan_Id (PK), Loan_date, Return_date                                       |
+| **Emp_Dependent** *(Weak)* | Name, Sex (Identified by Emp_Id)                                |
+| **Donations**    | Donator_ID (PK), Donator_Name, Donator_email                               |
+| **Vendor**       | Vendor_ID (PK), Vendor_Name, Contact_email *(added for Library–Vendor relation)* |
 
 ---
 
-## BookCopies (Weak Entity of Books)
-| Attribute        | Type            | Notes                                      |
-|------------------|-----------------|--------------------------------------------|
-| **copy_id**      | Partial Key     | Not unique without book_id                 |
-| condition        | Simple          | e.g., good, damaged                        |
-| acquisition_date | Simple          |                                            |
-| **book_id**      | FK, Owner Key   | Part of composite PK with copy_id          |
+## 2. Relationships
+
+| Relationship            | Type   | Cardinality | Participation                          | Description |
+|--------------------------|--------|-------------|----------------------------------------|-------------|
+| Library – Books          | Strong | M:N         | Library **total**, Book partial         | A library offers many books; a book may exist in multiple libraries. |
+| Library – Vendors        | Strong | M:N         | Both partial                           | A library can order from many vendors; a vendor supplies many libraries. |
+| Employee – Library       | Strong | N:1         | Employee **total**, Library partial     | Every employee works in one library. |
+| Employee – Emp_Dependent | Weak   | 1:N         | Employee **total**, Dependent **total** | A dependent cannot exist without an employee. |
+| Employee – Member        | Strong | 1:1         | Both partial                            | An employee may also be a member, and vice versa. |
+| Member – Loan            | Strong | N:1         | Loan **total**, Member partial          | Every loan must belong to a member. |
+| Book – Author            | Strong | M:N         | Book **total**, Author partial          | A book can have multiple authors; an author can write many books. |
+| Library – Donations      | Strong | 1:N         | Donation **total**, Library partial     | Each donation belongs to one library; a library may have many donations. |
+| Library – Member         | Strong | 1:N         | Member **total**, Library partial       | A library has many members; each member must belong to one library. |
 
 ---
 
-## Members
-| Attribute     | Type            | Notes                          |
-|---------------|-----------------|--------------------------------|
-| **member_id** | PK              | Primary Key                    |
-| full_name     | Simple          |                                |
-| email         | Simple, Unique  | Must be unique per member       |
-| phone         | Multi-valued    | Member may have multiple phones |
-| joined_on     | Simple          |                                |
-| status        | Simple          | e.g., active, suspended, closed |
+## 3. Participation Summary
 
----
-
-## Addresses (Weak Entity of Members)
-| Attribute     | Type            | Notes                                 |
-|---------------|-----------------|---------------------------------------|
-| **address_id**| Partial Key     | Not unique without member_id          |
-| street        | Simple          |                                       |
-| city          | Simple          |                                       |
-| postal_code   | Simple          |                                       |
-| country       | Simple          |                                       |
-| **member_id** | FK, Owner Key   | Part of composite PK with address_id  |
-
----
-
-## Staff
-| Attribute     | Type            | Notes                          |
-|---------------|-----------------|--------------------------------|
-| **staff_id**  | PK              | Primary Key                    |
-| full_name     | Simple          |                                |
-| email         | Simple, Unique  | Must be unique per staff        |
-| role          | Simple          | e.g., librarian, assistant      |
-| hired_on      | Simple          |                                |
-
----
-
-## Dependents (Weak Entity of Staff)
-| Attribute       | Type          | Notes                                 |
-|-----------------|---------------|---------------------------------------|
-| **dependent_id**| Partial Key   | Not unique without staff_id           |
-| name            | Simple        |                                       |
-| relationship    | Simple        | e.g., child, spouse                   |
-| birthdate       | Simple        |                                       |
-| **staff_id**    | FK, Owner Key | Part of composite PK with dependent_id|
-
----
-
-## Loans
-| Attribute     | Type            | Notes                                         |
-|---------------|-----------------|-----------------------------------------------|
-| **loan_id**   | PK              | Primary Key                                   |
-| loan_date     | Simple          |                                               |
-| due_date      | Simple          |                                               |
-| return_date   | Derived         | Based on loan_date + rules                    |
-| late_fee      | Derived         | Calculated based on due_date vs return_date   |
-| **book_id**   | FK              | References Books                              |
-| **member_id** | FK              | References Members                            |
-| **staff_id**  | FK              | References Staff                              |
-
----
-
-## Reservations
-| Attribute        | Type    | Notes                                |
-|------------------|---------|---------------------------------------|
-| **reservation_id**| PK     | Primary Key                          |
-| reservation_date | Simple  |                                      |
-| status           | Simple  | e.g., active, cancelled, fulfilled    |
-| **member_id**    | FK      | References Members                   |
-| **book_id**      | FK      | References Books                     |
-
----
-
-## Fines
-| Attribute     | Type    | Notes                                |
-|---------------|---------|---------------------------------------|
-| **fine_id**   | PK      | Primary Key                          |
-| amount        | Simple  |                                      |
-| status        | Simple  | e.g., paid, unpaid                   |
-| issued_date   | Simple  |                                      |
-| paid_date     | Simple  |                                      |
-| **loan_id**   | FK      | References Loans                     |
-| **member_id** | FK      | References Members                   |
-
----
-
-## Payments
-| Attribute     | Type    | Notes                                |
-|---------------|---------|---------------------------------------|
-| **payment_id**| PK      | Primary Key                          |
-| amount        | Simple  |                                      |
-| method        | Simple  | e.g., cash, card, online             |
-| payment_date  | Simple  |                                      |
-| **fine_id**   | FK      | References Fines                     |
-
----
-
-## Publishers
-| Attribute       | Type    | Notes          |
-|-----------------|---------|----------------|
-| **publisher_id**| PK      | Primary Key    |
-| name            | Simple  |                |
-| address         | Simple  |                |
-| contact_email   | Simple  |                |
-
----
-
-## Categories
-| Attribute       | Type    | Notes          |
-|-----------------|---------|----------------|
-| **category_id** | PK      | Primary Key    |
-| name            | Simple  | e.g., Fiction, Science |
-| description     | Simple  |                |
-
----
-
-## Branch
-| Attribute     | Type    | Notes          |
-|---------------|---------|----------------|
-| **branch_id** | PK      | Primary Key    |
-| branch_name   | Simple  |                |
-| address       | Simple  |                |
-| phone         | Simple  |                |
+| Relationship            | Entity with **Total** Participation |
+|--------------------------|--------------------------------------|
+| Library – Books          | Library                             |
+| Library – Vendors        | None (both partial)                 |
+| Employee – Library       | Employee                            |
+| Employee – Emp_Dependent | Employee, Dependent                 |
+| Employee – Member        | None (both partial)                 |
+| Member – Loan            | Loan                                |
+| Book – Author            | Book                                |
+| Library – Donations      | Donation                            |
+| Library – Member         | Member                              |
