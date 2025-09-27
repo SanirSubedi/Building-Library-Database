@@ -43,7 +43,7 @@ CREATE TABLE member (
     l_name       VARCHAR(120),
     email        VARCHAR(150) UNIQUE,
     lib_no       INT REFERENCES library(lib_no),
-    emp_id       INT UNIQUE REFERENCES employee(emp_id)    -- enforces 1:1 if present
+    emp_id       INT UNIQUE REFERENCES employee(emp_id)    
 );
 
 CREATE TABLE loan (
@@ -112,9 +112,6 @@ CREATE TABLE offer (
     FOREIGN KEY (loan_id) REFERENCES loan(loan_id) ON DELETE CASCADE
 );
 
--- =====================================================
--- INSERT SAMPLE DATA (DML)
--- =====================================================
 
 -- Libraries
 INSERT INTO library (lib_no, lib_name, lib_location) VALUES
@@ -208,7 +205,7 @@ INSERT INTO offer (emp_id, loan_id) VALUES
 (303, 503);
 
 -- =====================================================
--- Quick verification SELECTs (run after loading data)
+-- Quick verification SELECTs 
 -- =====================================================
 SELECT '--- LIBRARIES ---' AS info;       SELECT * FROM library ORDER BY lib_no;
 SELECT '--- VENDORS ---' AS info;         SELECT * FROM vendor ORDER BY vendor_id;
