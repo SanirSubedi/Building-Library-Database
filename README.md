@@ -24,7 +24,6 @@
 | Library – Vendors        | Strong | M:N         | Both partial                           | A library can order from many vendors; a vendor supplies many libraries. |
 | Employee – Library       | Strong | N:1         | Employee **total**, Library partial     | Every employee works in one library. |
 | Employee – Emp_Dependent | Weak   | 1:N         | Employee **total**, Dependent **total** | A dependent cannot exist without an employee. |
-| Employee – Member        | Strong | 1:1         | Both partial                            | An employee may also be a member, and vice versa. |
 | Member – Loan            | Strong | N:1         | Loan **total**, Member partial          | Every loan must belong to a member. |
 | Book – Author            | Strong | M:N         | Book **total**, Author partial          | A book can have multiple authors; an author can write many books. |
 | Library – Donations      | Strong | 1:N         | Donation **total**, Library partial     | Each donation belongs to one library; a library may have many donations. |
