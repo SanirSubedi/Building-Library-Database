@@ -198,13 +198,13 @@
 | 304 | David Lee | david.lee@library.fi | 1992-09-05 | Assistant | 2 | 303 |
 
 ## Members
-| Member ID | First Name | Last Name | Email | Library Number | Employee ID |
-|-----------|------------|-----------|-------|----------------|-------------|
-| 401 | David | Green | david.green@mail.com | 1 | NULL |
-| 402 | Sophia | Black | sophia.black@mail.com | 1 | NULL |
-| 403 | James | Wilson | james.wilson@mail.com | 2 | NULL |
-| 404 | Emily | Davis | emily.davis@mail.com | 1 | NULL |
-| 405 | Michael | Scott | michael.scott@mail.com | 2 | 301 |
+| Member ID | First Name | Last Name | Email | Library Number | 
+|-----------|------------|-----------|-------|----------------|
+| 401 | David | Green | david.green@mail.com | 1 |
+| 402 | Sophia | Black | sophia.black@mail.com | 1 |
+| 403 | James | Wilson | james.wilson@mail.com | 2 |
+| 404 | Emily | Davis | emily.davis@mail.com | 1 |
+| 405 | Michael | Scott | michael.scott@mail.com | 2 |
 
 ## Loans
 | Loan ID | Loan Date | Return Date | Member ID |

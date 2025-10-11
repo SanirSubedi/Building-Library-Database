@@ -146,12 +146,12 @@ INSERT INTO employee (emp_id, name, email, bod, sec, lib_no, manager_id) VALUES
 
 -- Members
 -- Note: m_id 405 is linked to emp_id 301 to illustrate Employee-Member 1:1 relation
-INSERT INTO member (m_id, f_name, l_name, email, lib_no, emp_id) VALUES
-(401, 'David', 'Green', 'david.green@mail.com', 1, NULL),
-(402, 'Sophia', 'Black', 'sophia.black@mail.com', 1, NULL),
-(403, 'James', 'Wilson', 'james.wilson@mail.com', 2, NULL),
-(404, 'Emily', 'Davis', 'emily.davis@mail.com', 1, NULL),
-(405, 'Michael', 'Scott', 'michael.scott@mail.com', 2, 301);
+INSERT INTO member (m_id, f_name, l_name, email, lib_no) VALUES
+(401, 'David', 'Green', 'david.green@mail.com', 1, ),
+(402, 'Sophia', 'Black', 'sophia.black@mail.com', 1,),
+(403, 'James', 'Wilson', 'james.wilson@mail.com', 2,),
+(404, 'Emily', 'Davis', 'emily.davis@mail.com', 1,),
+(405, 'Michael', 'Scott', 'michael.scott@mail.com', 2,);
 
 -- Loans
 INSERT INTO loan (loan_id, loan_date, return_date, member_id) VALUES
