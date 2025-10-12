@@ -1,5 +1,9 @@
 # 📚 Library Management System
 
+The Library Management System (LMS) is a database designed to efficiently manage library operations such as maintaining books, authors, employees, members, vendors, and donations.
+
+The goal of this project is to create a structured relational database that supports library operations like book borrowing, vendor purchases, and donor tracking, ensuring accuracy, scalability, and integrity of data.
+
 This project implements a **Library Management System** using SQL, designed to manage books, members, employees, vendors, and their relationships efficiently.  
 The database follows principles of **Entity–Relationship modeling**, **Normalization**, and **Referential Integrity**.
 
@@ -161,16 +165,6 @@ The design ensures **data accuracy**, **integrity**, and **efficient updates** a
 - Books can have multiple authors.
 - Loans are managed by employees through the *Offer* relationship.
 
----
-
-## 🧾 6. Key Relationships Summary
-
-- **Alice Brown (301)** is the HR manager and supervises Bob Martin (302) and Carol White (303).  
-- **Carol White (303)** supervises **David Lee (304)**.  
-- **Central Library (1)** purchases from both *BookWorld Oy* and *EduBooks Ltd*.  
-- **Westside Library (2)** purchases from *BookWorld Oy*.  
-- Some books (e.g., *Artificial Intelligence Basics*) have multiple authors.  
-- Two loans are still active (not returned yet).  
 
 ---
 
