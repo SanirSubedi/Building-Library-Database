@@ -49,7 +49,7 @@ The database follows principles of **Entity–Relationship modeling**, **Normali
 ## 🔗 Related Code Files
 > The full database implementation is separated into two SQL files for clarity:
 
-- [View the Code for DDL and DML](code.md)
+- [View the Code for DDL and DML](Code.md)
 - [View the Code for queries](Queries.md)
 
 ---
