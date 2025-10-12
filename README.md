@@ -39,7 +39,6 @@
 | Library – Vendors        | None (both partial)                 |
 | Employee – Library       | Employee                            |
 | Employee – Emp_Dependent | Employee, Dependent                 |
-| Employee – Member        | None (both partial)                 |
 | Member – Loan            | Loan                                |
 | Book – Author            | Book                                |
 | Library – Donations      | Donation                            |
