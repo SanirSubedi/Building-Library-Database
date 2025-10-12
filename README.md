@@ -51,7 +51,7 @@
 ## Library
 | Lib_Number | Lib_Name          | Lib_Location |
 |------------|------------------|--------------|
-| 1          | Central Library  | Helsinki     |
+| 1          | Kathmandu Valley Public Library | Kathmandu   |
 | 2          | Westside Library | Espoo        |
 
 ---
