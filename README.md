@@ -1,277 +1,190 @@
-# Library Management System – Entities & Relationships
-
-## 1. Entities and Attributes
-
-| Entity           | Attributes                                                                 |
-|------------------|----------------------------------------------------------------------------|
-| **Library**      | Lib_Name, Lib_Number, Lib_Location                                         |
-| **Books**        | Book_id (PK), Title, Language, Publish_year                                |
-| **Author**       | Author_id (PK), F_name, Birth_date, Sex                                    |
-| **Employee**     | Emp_Id (PK), Name, Email, BOD, Sec                                         |
-| **Member**       | M_Id (PK), F_name, L_name, Email                                           |
-| **Loan**         | Loan_Id (PK), Loan_date, Return_date                                       |
-| **Emp_Dependent** *(Weak)* | Name, Sex (Identified by Emp_Id)                                |
-| **Donations**    | Donator_ID (PK), Donator_Name, Donator_email                               |
-| **Vendor**       | Vendor_ID (PK), Vendor_Name, Contact_email *(added for Library–Vendor relation)* ,moobile_no|
-
----
-
-## 2. Relationships
-
-| Relationship            | Type   | Cardinality | Participation                          | Description |
-|--------------------------|--------|-------------|----------------------------------------|-------------|
-| Library – Books          | Strong | M:N         | Library **total**, Book partial         | A library offers many books; a book may exist in multiple libraries. |
-| Library – Vendors        | Strong | M:N         | Both partial                           | A library can order from many vendors; a vendor supplies many libraries. |
-| Employee – Library       | Strong | N:1         | Employee **total**, Library partial     | Every employee works in one library. |
-| Employee – Emp_Dependent | Weak   | 1:N         | Employee **total**, Dependent **total** | A dependent cannot exist without an employee. |
-| Member – Loan            | Strong | N:1         | Loan **total**, Member partial          | Every loan must belong to a member. |
-| Book – Author            | Strong | M:N         | Book **total**, Author partial          | A book can have multiple authors; an author can write many books. |
-| Library – Donations      | Strong | 1:N         | Donation **total**, Library partial     | Each donation belongs to one library; a library may have many donations. |
-| Library – Member         | Strong | 1:N         | Member **total**, Library partial       | A library has many members; each member must belong to one library. |
-
----
-
-## 3. Participation Summary
-
-| Relationship            | Entity with **Total** Participation |
-|--------------------------|--------------------------------------|
-| Library – Books          | Library                             |
-| Library – Vendors        | None (both partial)                 |
-| Employee – Library       | Employee                            |
-| Employee – Emp_Dependent | Employee, Dependent                 |
-| Employee – Member        | None (both partial)                 |
-| Member – Loan            | Loan                                |
-| Book – Author            | Book                                |
-| Library – Donations      | Donation                            |
-| Library – Member         | Member                              |
+# 📚 Library Management System
 
 
-#  Library Management System – Sample Data
+The Library Management System (LMS) is a database designed to efficiently manage library operations such as maintaining books, authors, employees, members, vendors, and donations.
 
-## Library
-| Lib_Number | Lib_Name          | Lib_Location |
-|------------|------------------|--------------|
-| 1          | Central Library  | Helsinki     |
-| 2          | Westside Library | Espoo        |
+The goal of this project is to create a structured relational database that supports library operations like book borrowing, vendor purchases, and donor tracking, ensuring accuracy, scalability, and integrity of data.
+
+This project implements a **Library Management System** using SQL, designed to manage books, members, employees, vendors, and their relationships efficiently.  
+The database follows principles of **Entity–Relationship modeling**, **Normalization**, and **Referential Integrity**.
+
+
+
+## 🧩 1. Entities and Attributes
+
+| Entity | Attributes |
+|--------|-------------|
+| **Library** | Lib_No (PK), Lib_Name, Lib_Location |
+| **Books** | Book_ID (PK), Title, Language, Publish_Year |
+| **Author** | Author_ID (PK), F_Name, Birth_Date, Sex |
+| **Employee** | Emp_ID (PK), Name, Email, BOD, Sec, Lib_No (FK), Manager_ID (Self-FK) |
+| **Member** | M_ID (PK), F_Name, L_Name, Email, Lib_No (FK) |
+| **Loan** | Loan_ID (PK), Loan_Date, Return_Date, Member_ID (FK) |
+| **Emp_Dependent** *(Weak Entity)* | Name, Sex, Emp_ID (FK) |
+| **Donations** | Donator_ID (PK), Donator_Name, Donator_Email, Lib_No (FK) |
+| **Vendor** | Vendor_ID (PK), Name, Email |
+| **Emp_Mobile** *(Multivalued)* | Emp_ID (FK), Mob_No |
+| **Vendor_Mobile** *(Multivalued)* | Vendor_ID (FK), Mobile_No |
+| **Book_Author** *(M:N)* | Book_ID (FK), Author_ID (FK) |
+| **Buys** *(M:N)* | Lib_No (FK), Vendor_ID (FK) |
+| **Offer** *(M:N)* | Emp_ID (FK), Loan_ID (FK) |
 
 ---
 
-## Books
-| Book_id | Title                          | Language | Publish_year |
-|---------|--------------------------------|----------|--------------|
-| 101     | Data Structures in C++         | English  | 2018         |
-| 102     | Introduction to Databases      | English  | 2020         |
-| 103     | Artificial Intelligence Basics | English  | 2021         |
+## 🔗 2. Relationships
+
+| Relationship | Type | Cardinality | Participation | Description |
+|---------------|------|-------------|---------------|--------------|
+| Library – Books | Strong | M:N | Library **total**, Book partial | A library can store many books; a book can belong to multiple libraries. |
+| Library – Vendor | Strong | M:N | Both partial | A library can order from multiple vendors. |
+| Employee – Library | Strong | N:1 | Employee **total**, Library partial | Each employee works in one library. |
+| Employee – Emp_Dependent | Weak | 1:N | Employee **total**, Dependent **total** | A dependent cannot exist without an employee. |
+| Member – Loan | Strong | N:1 | Loan **total**, Member partial | Each loan is issued to one member. |
+| Book – Author | Strong | M:N | Book **total**, Author partial | A book can have multiple authors; an author can write multiple books. |
+| Library – Donations | Strong | 1:N | Donation **total**, Library partial | Each donation is linked to one library. |
+| Library – Member | Strong | 1:N | Member **total**, Library partial | Each member belongs to one library. |
 
 ---
 
-## Author
-| Author_id | F_name       | Birth_date | Sex |
-|-----------|-------------|------------|-----|
-| 201       | John Smith  | 1975-06-15 | M   |
-| 202       | Emma Johnson| 1980-11-22 | F   |
+---
+
+## 🔗 Related Code Files
+> The full database implementation is separated into two SQL files for clarity:
+
+- [View the Code for DDL and DML](code.md)
+- [View the Code for queries](Queries.md)
 
 ---
 
-## Employee
-| Emp_Id | Name        | Email                      | BOD        | Sec     | Lib_no | Manager_id |
-|--------|------------|----------------------------|------------|---------|--------|------------|
-| 301    | Alice Brown| alice.brown@library.fi     | 1985-03-10 | HR      | 1      | NULL       |
-| 302    | Bob Martin | bob.martin@library.fi      | 1990-07-25 | Finance | 1      | 301        |
-| 303    | Carol White| carol.white@library.fi     | 1988-01-18 | IT      | 2      | 301        |
+## 📘 3. Normalization
+
+To ensure **data consistency** and **minimal redundancy**, the database is normalized up to **Third Normal Form (3NF)**.
+
+### **1NF – First Normal Form**
+- All attributes contain **atomic values**.
+- Multivalued attributes (e.g., employee phone numbers, vendor contact numbers) are moved to separate tables:
+  - `emp_mobile(emp_id, mob_no)`
+  - `vendor_mobile(vendor_id, mobile_no)`
+- Composite and repeating groups are eliminated.
+
+### **2NF – Second Normal Form**
+- All **non-key attributes** are fully dependent on the **primary key**.
+- Example: In `books`, `title`, `language`, and `publish_year` depend entirely on `book_id`.
+- Junction tables (`book_author`, `buys`, `offer`) remove partial dependencies in M:N relationships.
+
+### **3NF – Third Normal Form**
+- No **transitive dependencies**.
+- Example: Employee’s library information is stored in `library`, not duplicated in `employee`.
+- Vendor contact info is in `vendor_mobile`, preventing dependency chains.
+- Each table focuses on one **logical concept** (Library, Employee, Vendor, etc.).
+
+### ✅ **Normalization Summary**
+
+| Normal Form | Achieved | Purpose |
+|--------------|-----------|----------|
+| 1NF | ✅ | Remove repeating groups and multivalued attributes |
+| 2NF | ✅ | Remove partial dependencies |
+| 3NF | ✅ | Remove transitive dependencies and ensure referential integrity |
+
+The design ensures **data accuracy**, **integrity**, and **efficient updates** across all relationships.
 
 ---
 
-## Member
-| M_Id | F_name  | L_name   | Email                    | Loan_id | Lib_id |
-|------|---------|----------|--------------------------|---------|--------|
-| 401  | David   | Green    | david.green@mail.com     | 501     | 1      |
-| 402  | Sophia  | Black    | sophia.black@mail.com    | 502     | 1      |
-| 403  | James   | Wilson   | james.wilson@mail.com    | 503     | 2      |
+## 🧠 4. Participation Summary
+
+| Relationship | Entity with **Total Participation** |
+|---------------|--------------------------------------|
+| Library – Books | Library |
+| Library – Vendor | None (both partial) |
+| Employee – Library | Employee |
+| Employee – Emp_Dependent | Employee, Dependent |
+| Member – Loan | Loan |
+| Book – Author | Book |
+| Library – Donations | Donation |
+| Library – Member | Member |
 
 ---
 
-## Loan
-| Loan_Id | Loan_date  | Return_date | Member_id |
-|---------|------------|-------------|-----------|
-| 501     | 2024-01-12 | 2024-02-12  | 401       |
-| 502     | 2024-01-15 | 2024-02-15  | 402       |
-| 503     | 2024-01-20 | 2024-02-20  | 403       |
+## 📊 5. Sample Data Overview
 
----
-
-## Emp_Dependent (Weak Entity)
-| Name   | Sex | Emp_id |
-|--------|-----|--------|
-| Lily   | F   | 301    |
-| Tom    | M   | 302    |
-
----
-
-## Donations
-| Donator_ID | Donator_Name | Donator_email        | Lib_no |
-|------------|--------------|----------------------|--------|
-| 601        | Anna Clark   | anna.clark@mail.com  | 1      |
-| 602        | Mike Lee     | mike.lee@mail.com    | 2      |
-
----
-
-## Buys (M:N)
-| Lib_no | Vendor_id |
-|--------|-----------|
-| 1      | 701       |
-| 1      | 702       |
-| 2      | 701       |
-
----
-
-## Offer (M:N)
-| Emp_id | Loan_no |
-|--------|---------|
-| 301    | 501     |
-| 302    | 502     |
-
----
-
-## Emp-Mobile (Multivalued)
-| Emp_id | Mob_no     |
-|--------|------------|
-| 301    | 0401234567 |
-| 301    | 0407654321 |
-| 302    | 0419876543 |
-
----
-
-## Vendor_Mobile (Multivalued)
-| Vendor_id | Mobile_no |
-|-----------|-----------|
-| 701       | 050111222 |
-| 702       | 050333444 |
-
----
-
-## Vendor
-| Vendor_id | Name         | Mobile    | Email                 |
-|-----------|--------------|-----------|-----------------------|
-| 701       | BookWorld Oy | 050111222 | sales@bookworld.fi    |
-| 702       | EduBooks Ltd | 050333444 | contact@edubooks.com  |
-
-
-
-# Library Database - Table Data
-
-## Libraries
-| Library Number | Library Name | Location |
-|----------------|--------------|----------|
+### **Libraries**
+| Lib_No | Lib_Name | Lib_Location |
+|--------|-----------|--------------|
 | 1 | Central Library | Helsinki |
 | 2 | Westside Library | Espoo |
 
-## Vendors
-| Vendor ID | Name | Email |
-|-----------|------|-------|
-| 701 | BookWorld Oy | sales@bookworld.fi |
-| 702 | EduBooks Ltd | contact@edubooks.com |
-
-## Books
-| Book ID | Title | Language | Publish Year |
-|---------|-------|----------|--------------|
+### **Books**
+| Book_ID | Title | Language | Publish_Year |
+|----------|--------|----------|---------------|
 | 101 | Data Structures in C++ | English | 2018 |
 | 102 | Introduction to Databases | English | 2020 |
 | 103 | Artificial Intelligence Basics | English | 2021 |
 | 104 | Introduction to Algorithms | English | 2009 |
 
-## Authors
-| Author ID | First Name | Birth Date | Sex |
-|-----------|------------|------------|-----|
+### **Authors**
+| Author_ID | F_Name | Birth_Date | Sex |
+|------------|--------|------------|-----|
 | 201 | John Smith | 1975-06-15 | M |
 | 202 | Emma Johnson | 1980-11-22 | F |
 | 203 | Robert Brown | 1968-05-30 | M |
 | 204 | Alice Green | 1992-02-14 | F |
 
-## Employees
-| Employee ID | Name | Email | Birth Date | Section | Library Number | Manager ID |
-|-------------|------|-------|------------|---------|----------------|------------|
+### **Employees**
+| Emp_ID | Name | Email | BOD | Sec | Lib_No | Manager_ID |
+|--------|------|-------|-----|-----|--------|-------------|
 | 301 | Alice Brown | alice.brown@library.fi | 1985-03-10 | HR | 1 | NULL |
 | 302 | Bob Martin | bob.martin@library.fi | 1990-07-25 | Finance | 1 | 301 |
 | 303 | Carol White | carol.white@library.fi | 1988-01-18 | IT | 2 | 301 |
 | 304 | David Lee | david.lee@library.fi | 1992-09-05 | Assistant | 2 | 303 |
 
-## Members
-| Member ID | First Name | Last Name | Email | Library Number | 
-|-----------|------------|-----------|-------|----------------|
+### **Members**
+| M_ID | F_Name | L_Name | Email | Lib_No |
+|------|---------|--------|-------|--------|
 | 401 | David | Green | david.green@mail.com | 1 |
 | 402 | Sophia | Black | sophia.black@mail.com | 1 |
 | 403 | James | Wilson | james.wilson@mail.com | 2 |
 | 404 | Emily | Davis | emily.davis@mail.com | 1 |
 | 405 | Michael | Scott | michael.scott@mail.com | 2 |
 
-## Loans
-| Loan ID | Loan Date | Return Date | Member ID |
-|---------|-----------|-------------|-----------|
+### **Loans**
+| Loan_ID | Loan_Date | Return_Date | Member_ID |
+|----------|------------|-------------|------------|
 | 501 | 2025-09-01 | 2025-09-15 | 401 |
 | 502 | 2025-09-05 | NULL | 402 |
 | 503 | 2025-09-10 | NULL | 403 |
 
-## Donations
-| Donator ID | Donator Name | Donator Email | Library Number |
-|------------|--------------|---------------|----------------|
+### **Donations**
+| Donator_ID | Donator_Name | Donator_Email | Lib_No |
+|-------------|---------------|----------------|--------|
 | 601 | Anna Clark | anna.clark@mail.com | 1 |
 | 602 | Mike Lee | mike.lee@mail.com | 2 |
 | 603 | Katherine Mills | katherine.mills@mail.com | 1 |
 
-## Employee Dependents
-| Dependent Name | Sex | Employee ID |
-|----------------|-----|-------------|
-| Lily Brown | F | 301 |
-| Tom Martin | M | 302 |
-| Sam Lee | M | 304 |
-
-## Employee Mobile Numbers
-| Employee ID | Mobile Number |
-|-------------|---------------|
-| 301 | +358401234567 |
-| 301 | +358401111222 |
-| 302 | +358409876543 |
-| 303 | +358407777888 |
-
-## Vendor Mobile Numbers
-| Vendor ID | Mobile Number |
-|-----------|---------------|
-| 701 | +358401112233 |
-| 701 | +358401998877 |
-| 702 | +358409998877 |
-
-## Book Authors (Many-to-Many Relationship)
-| Book ID | Author ID |
-|---------|-----------|
-| 101 | 201 |
-| 102 | 202 |
-| 103 | 201 |
-| 103 | 204 |
-| 104 | 203 |
-
-## Library Purchases (Many-to-Many Relationship)
-| Library Number | Vendor ID |
-|----------------|-----------|
-| 1 | 701 |
-| 1 | 702 |
-| 2 | 701 |
-
-## Employee Loan Offers (Many-to-Many Relationship)
-| Employee ID | Loan ID |
-|-------------|---------|
-| 301 | 501 |
-| 302 | 502 |
-| 303 | 503 |
+### **Relationships & Multivalued Data**
+- Employees may have multiple phone numbers.
+- Vendors may serve multiple libraries.
+- Books can have multiple authors.
+- Loans are managed by employees through the *Offer* relationship.
 
 ---
 
-## Key Relationships Summary
+## 🧾 6. Key Relationships Summary
 
-- **Alice Brown (301)** is the HR manager and supervises Bob Martin (302) and Carol White (303)
-- **Carol White (303)** supervises David Lee (304)
-- **Michael Scott (405)** is both a member and an employee (Employee ID: 301)
-- **Central Library (1)** purchases from both BookWorld Oy and EduBooks Ltd
-- **Westside Library (2)** purchases from BookWorld Oy
-- Some books have multiple authors (e.g., "Artificial Intelligence Basics" by John Smith and Alice Green)
-- Currently 2 loans are still active (not returned yet)
+- **Alice Brown (301)** is the HR manager and supervises Bob Martin (302) and Carol White (303).  
+- **Carol White (303)** supervises **David Lee (304)**.  
+- **Central Library (1)** purchases from both *BookWorld Oy* and *EduBooks Ltd*.  
+- **Westside Library (2)** purchases from *BookWorld Oy*.  
+- Some books (e.g., *Artificial Intelligence Basics*) have multiple authors.  
+- Two loans are still active (not returned yet).  
+
+---
+
+## 🧱 7. Future Improvements
+- Add **Views** for easy reporting (e.g., “Books by Author”, “Active Loans”).  
+- Implement **Stored Procedures** for issuing/returning books.  
+- Use **Triggers** for automatic updates on due dates or fine calculations.  
+- Expand to **4NF/5NF** for separating independent multi-valued dependencies (if needed).
+
+---
+
+📘 *Developed as part of the Database Management coursework for practicing SQL normalization, ER modeling, and relational schema design.*
