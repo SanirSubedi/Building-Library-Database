@@ -1,13 +1,7 @@
 # 📚 Library Management System
 
-
-The Library Management System (LMS) is a database designed to efficiently manage library operations such as maintaining books, authors, employees, members, vendors, and donations.
-
-The goal of this project is to create a structured relational database that supports library operations like book borrowing, vendor purchases, and donor tracking, ensuring accuracy, scalability, and integrity of data.
-
 This project implements a **Library Management System** using SQL, designed to manage books, members, employees, vendors, and their relationships efficiently.  
 The database follows principles of **Entity–Relationship modeling**, **Normalization**, and **Referential Integrity**.
-
 
 
 ## 🧩 1. Entities and Attributes
@@ -55,6 +49,7 @@ The database follows principles of **Entity–Relationship modeling**, **Normali
 - [View the Code for queries](Queries.md)
 
 ---
+
 
 ## 📘 3. Normalization
 
