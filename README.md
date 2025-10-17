@@ -175,6 +175,8 @@ The design ensures **data accuracy**, **integrity**, and **efficient updates** a
 - Books can have multiple authors.
 - Loans are managed by employees through the *Offer* relationship.
 
+### Outcomes 
+
 | **Concept**        | **Learning Outcome**                                                |
 | ------------------ | ------------------------------------------------------------------- |
 | ER Modeling        | Modeled logical structure of data using entities and relationships. |
