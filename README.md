@@ -70,6 +70,9 @@ For Code: [10 SQL Queries](Queries.md)
 ## 📘 3. Normalization
 
 To ensure **data consistency** and **minimal redundancy**, the database is normalized up to **Third Normal Form (3NF)**.
+Normalization is a process of organizing data or behavior to make it more standard or regular. In 
+databases, it involves structuring data to reduce redundancy and improve integrity by breaking it 
+into smaller tables with relationships 
 
 ### **1NF – First Normal Form**
 - All attributes contain **atomic values**.
