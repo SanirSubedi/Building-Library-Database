@@ -109,7 +109,7 @@ The design ensures **data accuracy**, **integrity**, and **efficient updates** a
 ### **Libraries**
 | Lib_No | Lib_Name | Lib_Location |
 |--------|-----------|--------------|
-| 1 | Central Library | Helsinki |
+| 1 | Kathmandu Valley Public Library | Kathmandu |
 | 2 | Westside Library | Espoo |
 
 ### **Books**

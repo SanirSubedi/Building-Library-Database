@@ -115,7 +115,7 @@ CREATE TABLE offer (
 
 -- Libraries
 INSERT INTO library (lib_no, lib_name, lib_location) VALUES
-(1, 'Central Library', 'Helsinki'),
+(1, 'Kathmandu Valley Public Library', 'Kathmandu'),
 (2, 'Westside Library', 'Espoo');
 
 -- Vendors
