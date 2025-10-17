@@ -42,10 +42,7 @@ The database follows principles of **Entity–Relationship modeling**, **Normali
 | Library – Donations | Strong | 1:N | Donation **total**, Library partial | Each donation is linked to one library. |
 | Library – Member | Strong | 1:N | Member **total**, Library partial | Each member belongs to one library. |
 
----
-## Er Diagram 
 
-![Alt text](image.png)
 
 ---
 
