@@ -43,6 +43,11 @@ The database follows principles of **Entity–Relationship modeling**, **Normali
 | Library – Member | Strong | 1:N | Member **total**, Library partial | Each member belongs to one library. |
 
 ---
+## Er Diagram 
+
+![Alt text](image.png)
+
+---
 
 ## DDL 
 	 DDL stands for Data Definition Language, a subset of SQL used to create, modify, and remove database objects like tables, schemas, and indexes. Its main purpose is to define the structure and schema of a database, rather than manipulating the data within it.
