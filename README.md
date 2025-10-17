@@ -192,7 +192,7 @@ The design ensures **data accuracy**, **integrity**, and **efficient updates** a
 | Documentation      | Structured Markdown documentation for professional reporting.       |
 
 
-### 12. Conclusion
+### Conclusion
 
 The Library Management System project demonstrates the complete lifecycle of database design, from concept to implementation.
 
