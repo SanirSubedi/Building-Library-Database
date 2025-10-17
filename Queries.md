@@ -5,11 +5,11 @@ FROM books b
 JOIN book_author ba ON b.book_id = ba.book_id
 JOIN author a ON ba.author_id = a.author_id;
 
--- 2. Show employees working in Central Library
+-- 2. Show employees working in Kathmandu Valley Public Library
 SELECT e.name, e.email, l.lib_name
 FROM employee e
 JOIN library l ON e.lib_no = l.lib_no
-WHERE l.lib_name = 'Central Library';
+WHERE l.lib_name = 'Kathmandu Valley Public Library';
 
 -- 3. Find all loans not yet returned
 SELECT loan_id, member_id, loan_date
