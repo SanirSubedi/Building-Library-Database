@@ -44,15 +44,25 @@ The database follows principles of **Entity–Relationship modeling**, **Normali
 
 ---
 
+## DDL 
+	 DDL stands for Data Definition Language, a subset of SQL used to create, modify, and remove database objects like tables, schemas, and indexes. Its main purpose is to define the structure and schema of a database, rather than manipulating the data within it.
+
+
+## DML 
+	A data manipulation language is a computer programming language used for adding, deleting, and modifying data in a database. A DML is often a sublanguage of a broader database language such as SQL, with the DML comprising some of the operators in the language.
+
+
+For Code: [Data Defination Language (Sql Code)](code.md)
+
+
+
+## Queries 
+	A query is a request for information, or an action to be performed on data. It can be a simple question a person asks to get information, or a technical command sent to a database or search engine to retrieve specific data.
+
+For Code: [10 SQL Queries](Queries.md) 
+
 ---
 
-## 🔗 Related Code Files
-> The full database implementation is separated into two SQL files for clarity:
-
-- [View the Code for DDL and DML](Code.md)
-- [View the Code for queries](Queries.md)
-
----
 
 
 ## 📘 3. Normalization
@@ -165,15 +175,23 @@ The design ensures **data accuracy**, **integrity**, and **efficient updates** a
 - Books can have multiple authors.
 - Loans are managed by employees through the *Offer* relationship.
 
+| **Concept**        | **Learning Outcome**                                                |
+| ------------------ | ------------------------------------------------------------------- |
+| ER Modeling        | Modeled logical structure of data using entities and relationships. |
+| Relational Mapping | Converted ER model to relational schema with constraints.           |
+| Normalization      | Achieved up to 3NF, ensuring efficiency and consistency.            |
+| SQL DDL/DML        | Designed and populated the database using MySQL.                    |
+| Query Writing      | Developed complex joins and aggregate queries for analysis.         |
+| Documentation      | Structured Markdown documentation for professional reporting.       |
 
----
 
-## 🧱 7. Future Improvements
-- Add **Views** for easy reporting (e.g., “Books by Author”, “Active Loans”).  
-- Implement **Stored Procedures** for issuing/returning books.  
-- Use **Triggers** for automatic updates on due dates or fine calculations.  
-- Expand to **4NF/5NF** for separating independent multi-valued dependencies (if needed).
+### 12. Conclusion
 
+The Library Management System project demonstrates the complete lifecycle of database design, from concept to implementation.
+
+By applying normalization principles and building relational models, the system ensures data integrity, reduces redundancy, and supports reliable operations for library workflows.
+
+This project showcases strong practical understanding of database design, SQL implementation, and documentation aligning with the learning goals of the Database Design and Programming course.
 ---
 
 📘 *Developed as part of the Database Management coursework for practicing SQL normalization, ER modeling, and relational schema design.*
