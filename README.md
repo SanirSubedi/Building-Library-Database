@@ -52,7 +52,7 @@ The database follows principles of **Entity–Relationship modeling**, **Normali
 	A data manipulation language is a computer programming language used for adding, deleting, and modifying data in a database. A DML is often a sublanguage of a broader database language such as SQL, with the DML comprising some of the operators in the language.
 
 
-For Code: [Data Defination Language (Sql Code)](code.md)
+For Code: [DDL and DML (Sql Code)](code.md)
 
 
 
