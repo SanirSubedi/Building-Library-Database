@@ -43,6 +43,11 @@ The database follows principles of **Entity–Relationship modeling**, **Normali
 | Library – Member | Strong | 1:N | Member **total**, Library partial | Each member belongs to one library. |
 
 
+---
+
+![Er-Diagram](ER-Diagram.png){width=50%}
+---
+
 
 ---
 
