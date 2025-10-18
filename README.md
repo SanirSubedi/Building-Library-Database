@@ -45,7 +45,9 @@ The database follows principles of **Entity–Relationship modeling**, **Normali
 
 ---
 
-![Er-Diagram](ER-Diagram.png){width=50%}
+![Er-Diagram](image/ER-Diagram.jpg)
+![Relational Sechema](image/a_Relational_Sechema.jpg)
+
 ---
 
 
@@ -70,6 +72,10 @@ For Code: [10 SQL Queries](Queries.md)
 
 ---
 
+## Output
+![Output1](image/Output-1.png)
+![Output2](image/Output-2.png)
+![Output3](image/Output-3.png)
 
 
 ## 📘 3. Normalization
