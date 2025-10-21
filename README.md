@@ -45,7 +45,16 @@ The database follows principles of **Entity–Relationship modeling**, **Normali
 
 ---
 
+# Er-DIagram 
+- An ER diagram is a visual representation of how different entities, like customers or products, are related within a database system.This is the Er-Diagram for Library Management System.  
+
 ![Er-Diagram](image/ER-Diagram.jpg)
+
+---
+
+# Relational Schema 
+- A relational schema is the blueprint or design of a relational database, outlining its structure by defining tables, columns (attributes), and the relationships between them. 
+
 ![Relational Sechema](image/a_Relational_Sechema.jpg)
 
 ---
@@ -54,11 +63,11 @@ The database follows principles of **Entity–Relationship modeling**, **Normali
 ---
 
 ## DDL 
-	 DDL stands for Data Definition Language, a subset of SQL used to create, modify, and remove database objects like tables, schemas, and indexes. Its main purpose is to define the structure and schema of a database, rather than manipulating the data within it.
+	 DDL stands for Data Definition Language, a subset of SQL used to create, modify, and remove database objects like tables, schemas, and indexes. Its main purpose is to define the structure and schema of a database, rather than manipulating the data within it.
 
 
 ## DML 
-	A data manipulation language is a computer programming language used for adding, deleting, and modifying data in a database. A DML is often a sublanguage of a broader database language such as SQL, with the DML comprising some of the operators in the language.
+	A data manipulation language is a computer programming language used for adding, deleting, and modifying data in a database. A DML is often a sublanguage of a broader database language such as SQL, with the DML comprising some of the operators in the language.
 
 
 For Code: [DDL and DML (Sql Code)](code.md)
@@ -66,7 +75,7 @@ For Code: [DDL and DML (Sql Code)](code.md)
 
 
 ## Queries 
-	A query is a request for information, or an action to be performed on data. It can be a simple question a person asks to get information, or a technical command sent to a database or search engine to retrieve specific data.
+	A query is a request for information, or an action to be performed on data. It can be a simple question a person asks to get information, or a technical command sent to a database or search engine to retrieve specific data.
 
 For Code: [10 SQL Queries](Queries.md) 
 
@@ -84,6 +93,8 @@ To ensure **data consistency** and **minimal redundancy**, the database is norma
 Normalization is a process of organizing data or behavior to make it more standard or regular. In 
 databases, it involves structuring data to reduce redundancy and improve integrity by breaking it 
 into smaller tables with relationships 
+
+#### In our Library Management System we followed the course structure So, we completed the relational schema first. The table was aleardy in 3NF after relational schema. 
 
 ### **1NF – First Normal Form**
 - All attributes contain **atomic values**.
